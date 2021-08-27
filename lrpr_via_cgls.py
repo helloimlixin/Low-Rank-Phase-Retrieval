@@ -8,7 +8,7 @@ Created on Fri Jul 23 11:44:28 2021
 
 import numpy as np
 from custom_cgls_lrpr import cglsLRPR
-
+import cmath
 
 def chooseRank(array):
     """
@@ -120,6 +120,7 @@ def updateC(A, U, B):
         y_hat = A_k.T @ x_hat
         
         phase_y = np.exp(1j*np.angle(y_hat))
+
         #phase_y = np.sign(y_hat)
         C_k = np.diag(phase_y)
         C_tensor[:, :, k] = C_k
@@ -128,7 +129,7 @@ def updateC(A, U, B):
     return C_tensor
 
 
-def lrpr_fit(Y, A, rank=None, max_iters=15):
+def lrpr_fit(Y, A, rank=None, max_iters=50):
     """
         Training loop for LRPR via CGLS.
     """
@@ -170,9 +171,8 @@ def lrpr_fit(Y, A, rank=None, max_iters=15):
             M = A_k.T @ U
             
             # closed form for M
-            b_k = np.linalg.inv(M.T @ M) @ M.T @ (C_k @ y_k)
+            b_k = np.linalg.pinv(M.T @ M) @ M.T @ (C_k @ y_k)
             
             B[k] = b_k
             
-    X_lrpr = U @ B.T
-    return X_lrpr
+    return U, B
