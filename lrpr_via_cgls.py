@@ -129,7 +129,7 @@ def updateC(A, U, B):
     return C_tensor
 
 
-def lrpr_fit(Y, A, rank=None, max_iters=50):
+def lrpr_fit(Y, A, rank=None, max_iters=10):
     """
         Training loop for LRPR via CGLS.
     """
@@ -145,7 +145,7 @@ def lrpr_fit(Y, A, rank=None, max_iters=50):
     C_y_vec = np.zeros((m*q, ), dtype=np.complex);
 
     for i in range(max_iters):
-        print('Current Iteration:', i)
+        print('Current Iteration:', i + 1)
 
         # update D
         st = 0

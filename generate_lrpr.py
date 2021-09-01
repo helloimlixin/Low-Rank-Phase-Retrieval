@@ -63,19 +63,21 @@ def generateLRPRMeasurements(image_name, m_dim, L):
     alphabet = [1, -1, complex(0, 1), complex(0, -1)]
 
     # Modulation patterns.
-    D = generate_cdp_masks(alphabet, n1, n2, L)
+    masks = generate_cdp_masks(alphabet, n1, n2, L)
     # DFT matrix.
-    f = np.fft.fft2(np.eye(n_dim, q_dim))
+    f = np.kron(np.fft.fft(np.eye(n1)), np.fft.fft(np.eye(n2)))
 
     for k in range(q_dim):
         # A_k = f_k * D_l
         # where f_k is the kth row of the DFT matrix, and D_l is the ith frontal
         # slice of the modulation tensor.
-        A_k = np.multiply(f[:, k], np.diag(np.reshape(D[:, :, 0], (n_dim,))))
+        A_k = np.multiply(f, np.diag(np.reshape(masks[:, :, 0], (n_dim,))))
+
         
+        # Stack together operators for different modulation code patterns.
         for l in range(1, L):
-            A_k = np.hstack((A_k, np.multiply(
-                f[:, k], np.diag(np.reshape(D[:, :, l], (n_dim,))))))
+            A_k = np.hstack(
+                (A_k, np.multiply(f, np.diag(np.reshape(masks[:, :, l], (n_dim,))))))
 
         A_tensor[:, :, k] = A_k
         x_k = vec_images[:, k]
@@ -85,7 +87,7 @@ def generateLRPRMeasurements(image_name, m_dim, L):
 
         # Perform the 2D Discrete Fourier Transform.
         Ax_k = np.fft.fft2(
-            np.multiply(D, np.reshape(np.tile(x_k, (1, L)), (n1, n2, L))))
+            np.multiply(masks, np.reshape(np.tile(x_k, (1, L)), (n1, n2, L))))
 
         y_k = np.abs(np.reshape(Ax_k, (n_dim * L)))**2
         Y[:, k] = y_k
