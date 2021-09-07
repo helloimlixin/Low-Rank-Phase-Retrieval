@@ -70,15 +70,13 @@ def generateLRPRMeasurements(image_name, m_dim, L):
 
     for k in range(q_dim):
         # A_k = f_k * D_l
-        # where f_k is the kth row of the DFT matrix, and D_l is the ith frontal slice 
-        # of the modulation tensor.
+        # where f_k is the kth row of the DFT matrix, and D_l is the ith frontal slice of the modulation tensor.
         A_k = np.multiply(f, np.diag(np.reshape(masks[:, :, 0], (n_dim,), order='F')))
 
         
         # Stack together operators for different modulation code patterns.
         for l in range(1, L):
-            A_k = np.hstack(
-                (A_k, np.multiply(f, np.diag(np.reshape(masks[:, :, l], (n_dim,), order='F')))))
+            A_k = np.hstack((A_k, np.multiply(f, np.diag(np.reshape(masks[:, :, l], (n_dim,), order='F')))))
 
         A_tensor[:, :, k] = A_k
         x_k = vec_images[:, k]

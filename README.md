@@ -5,14 +5,16 @@ For more information: https://arxiv.org/abs/1608.04141
 
 
 ## Programs
+
 The following is a list of which algorithms correspond to which Python script:
 
-* custom_cgls_lrpr.py - Customized conjugate gradient least squares (CGLS) solver
-* lrpr_via_cgls.py - Implementation of AltMinTrunc (LRPR2)
-* sample_run.py - Example on using LRPR implementation
+* `custom_cgls_lrpr.py` - Customized conjugate gradient least squares (CGLS) solver
+* `lrpr_via_cgls.py` - Implementation of AltMinTrunc (LRPR2)
+* `lrpr_run.py` - Example on using LRPR implementation
+* `generate_lrpr.py` - Generate CDP measurements with input video
 
 ## Tutorial
-This tutorial can be found in sample_run.py:
+This tutorial can be found in `lrpr_run.py`:
 
 ```
 import numpy as np

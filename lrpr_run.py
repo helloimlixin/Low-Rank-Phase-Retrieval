@@ -18,8 +18,7 @@ with np.load(image_name) as data:
     tensor = data['arr_0']
 n1, n2, q_dim = tensor.shape
 
-# m_dim = 700
-L = 1 # number of modulations
+L = 3 # number of modulations
 m_dim = n1 * n2 * L
 
 images, Y, A = generateLRPRMeasurements(image_name=image_name, m_dim=m_dim, L=L)
