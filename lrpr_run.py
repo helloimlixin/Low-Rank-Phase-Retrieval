@@ -10,7 +10,6 @@ import numpy as np
 from lrpr_via_cgls import lrpr_fit
 import matplotlib.pyplot as plt
 from generate_lrpr import generateLRPRMeasurements
-from scipy.io import savemat
 
 
 image_name = 'image_tensor_small.npz'
@@ -22,12 +21,6 @@ L = 3 # number of modulations
 m_dim = n1 * n2 * L
 
 images, Y, A = generateLRPRMeasurements(image_name=image_name, m_dim=m_dim, L=L)
-
-Adict = {"A": A, "label": "operators"}
-Ydict = {"Y": Y, "label": "measurements"}
-
-savemat("A.mat", Adict)
-savemat("Y.mat", Ydict)
 
 U, B = lrpr_fit(Y=Y, A=A, rank=1)
 
