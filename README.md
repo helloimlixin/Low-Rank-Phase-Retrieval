@@ -55,4 +55,5 @@ plt.show()
 ## Reconstruction results with CDP Measurements
 
 ![Original Image](true_image.png)
+
 ![Reconstructed Image](reconstructed.png)
