@@ -48,8 +48,8 @@ plt.title('Reconstructed Image via LRPR')
 plt.show()
 ```
 
-## Solution Example
+## Reconstruction results with CDP Measurements
 
-<p align="center">
-  <a href="url"><img src="https://github.com/soominkwon/Low-Rank-Phase-Retrieval/blob/main/lrpr_sample_results.png" align="left" height="300" width="300" ></a>
-</p>
+![Original Image](true_image.png)
+
+![Reconstructed Image](reconstructed.png)
