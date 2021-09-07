@@ -129,7 +129,7 @@ def updateC(A, U, B):
     return C_tensor
 
 
-def lrpr_fit(Y, A, rank=None, max_iters=10):
+def lrpr_fit(Y, A, rank=None, max_iters=15):
     """
         Training loop for LRPR via CGLS.
     """

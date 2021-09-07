@@ -19,7 +19,7 @@ with np.load(image_name) as data:
 n1, n2, q_dim = tensor.shape
 
 # m_dim = 700
-L = 5 # number of modulations
+L = 1 # number of modulations
 m_dim = n1 * n2 * L
 
 images, Y, A = generateLRPRMeasurements(image_name=image_name, m_dim=m_dim, L=L)
@@ -32,7 +32,7 @@ savemat("Y.mat", Ydict)
 
 U, B = lrpr_fit(Y=Y, A=A, rank=1)
 
-X_hat = U @ B.T
+X_hat = U @ B.conj().T
 vec_first_image = X_hat[:, 0]
 
 first_image = np.reshape(
