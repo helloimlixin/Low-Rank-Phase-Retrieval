@@ -22,6 +22,8 @@ m_dim = n1 * n2 * L
 
 images, Y, A = generateLRPRMeasurements(image_name=image_name, m_dim=m_dim, L=L)
 
+print(A)
+
 U, B = lrpr_fit(Y=Y, A=A, rank=1)
 
 X_hat = U @ B.conj().T

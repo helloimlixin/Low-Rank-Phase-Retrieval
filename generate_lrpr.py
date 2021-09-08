@@ -85,7 +85,9 @@ def generateLRPRMeasurements(image_name, m_dim, L):
         x_k = x_k / norm_x_k
 
         # Perform the 2D Discrete Fourier Transform.
-        Ax_k = np.dot(np.reshape(x_k, (1, n_dim), order='F'), A_k)
+        # Ax_k = np.dot(np.reshape(x_k, (1, n_dim), order='F'), A_k)
+        
+        Ax_k = A_k.conj().T @ x_k # taking the 2D Discrete Fourier Transform
 
         y_k = np.abs(np.reshape(Ax_k, (n_dim * L), order='F'))**2
         Y[:, k] = y_k
