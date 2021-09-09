@@ -1,6 +1,6 @@
 # Low-Rank-Phase-Retrieval
 
-Low Rank Phase Retrieval (LRPR) Implementation via Conjugate Gradient Least Squaresfor solving a matrix of complex valued signals. This implementation is of the algorithm LRPR2 (LRPR via Alternating Minimization) based on the paper "Low Rank Phase Retrieval".
+Low Rank Phase Retrieval (LRPR) Implementation via Conjugate Gradient Least Squares for solving a matrix of complex valued signals. This implementation is of the algorithm LRPR2 (LRPR via Alternating Minimization) based on the paper "Low Rank Phase Retrieval".
 
 For more information: [https://arxiv.org/abs/1608.04141](https://arxiv.org/abs/1608.04141)
 
